@@ -9,3 +9,16 @@ makeMatrix <- function(x=matrix()){
     getinverse <- function()m
     list(set=set,get=get,setinverse=setinverse,getinverse=getinverse)
 }
+
+cacheSolve <- function(x,...){
+        m <- x$getinverse()
+        if(!is.null(m)){
+            message("getting cached data")
+            return(m)
+        }
+        data <- x$get()
+        i <- solve(data,...)
+        x$setinverse(m)
+        m
+    }
+    
